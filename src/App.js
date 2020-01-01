@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import NewList from "./components/NewsList";
 import Categories from "./components/Categories";
 
 function App() {
+  const [category, setCategory] = useState("all");
+  const onSelect = useCallback(category => setCategory(category), []);
   return (
     <>
-      <Categories />
-      <NewList />
+      <Categories category={category} onSelect={onSelect} />
+      <NewList category={category} />
     </>
   );
 }
